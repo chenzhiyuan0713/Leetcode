@@ -29,3 +29,20 @@
 输出：true
 
 """
+
+
+class Solution:
+    def halvesAreAlike(self, s: str) -> bool:
+        s_head, s_tail = s[:len(s)//2], s[len(s)//2:]
+        head_counter, tail_counter = 0, 0
+        for each_word in s_head:
+            if each_word in ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']:
+                head_counter += 1
+        for each_word2 in s_tail:
+            if each_word2 in ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']:
+                tail_counter += 1
+        return head_counter == tail_counter
+
+
+answer = Solution()
+print(answer.halvesAreAlike("AbCdEfGh"))
