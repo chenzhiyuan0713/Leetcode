@@ -27,11 +27,39 @@
 
 
 class Solution:
-    def countGoodTriplets(self, arr: list[int], a: int, b: int, c: int) -> int:
+    def countGoodTriplets(self, arr, a: int, b: int, c: int) -> int:
         result_counter = 0
         for index in range(len(arr)):
-            counter = 0
-            while index+1+counter != len(arr):
-                if abs(arr[index] - arr[index + 1 + counter]) <= a:
-                    pass
+            counter = 1
+            while index+counter < len(arr):
+                if abs(arr[index] - arr[index + counter]) <= a:
+                    # print(arr[index], arr[index + counter])
+                    counter_2 = 1
+                    # counter += 1
+                    counter_3 = 0
+                    while index + counter + counter_2 < len(arr):
+                        if abs(arr[index + counter] - arr[index + counter + counter_2]) <= b:
+                            # print(arr[index + counter], arr[index + counter + counter_2])
+                            # counter_2 += 1
+                            while index + counter + counter_2 + counter_3 < len(arr):
+                                if abs(arr[index] - arr[index + counter + counter_2 + counter_3]) <= c:
+                                    # print(arr[index + counter + counter_2], arr[index + counter + counter_2 + counter_3])
+                                    result_counter += 1
+                                    print(arr[index], arr[index + counter], arr[index + counter + counter_2 + counter_3],(index, index + counter, index + counter + counter_2 + counter_3))
+                                    counter_3 += 1
+                                else:
+                                    # print(arr[index],arr[index + counter + counter_2], arr[index + counter + counter_2 + counter_3])
+                                    counter_3 += 1
+                            counter_2 += 1
+                        else:
+                            counter_2 += 1
+                    counter += 1
                 else:
+                    counter += 1
+        return result_counter
+
+
+answer = Solution()
+# print(answer.countGoodTriplets([3,0,1,1,9,7], 7, 2, 3))
+# print(answer.countGoodTriplets([1,1,2,2,3], 0, 0, 1))
+print(answer.countGoodTriplets([4,4,4,0,0,10,7,8,8], 8, 4, 6))
