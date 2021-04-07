@@ -15,7 +15,7 @@ n 为正整数
 """
 
 
-class Solution:
+class Solution: 
     def printNumbers(self, n: int):
         max_num = 10 ** n
         res = []
