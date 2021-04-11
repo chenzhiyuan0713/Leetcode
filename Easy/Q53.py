@@ -40,4 +40,9 @@
 
 
 class Solution:
-    def canBeEqual(self, target: List[int], arr: List[int]) -> bool:
+    def canBeEqual(self, target, arr) -> bool:
+        return sorted(target) == sorted(arr)
+
+
+answer = Solution()
+print(answer.canBeEqual(target = [1,1,1,1,1], arr = [1,1,1,1,1]))
