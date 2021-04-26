@@ -37,4 +37,17 @@
 
 
 class Solution:
-    def finalPrices(self, prices: List[int]) -> List[int]:
+    def finalPrices(self, prices: list) -> list:
+        result = []
+        for index in range(len(prices)):
+            for each in prices[index+1:]:
+                if prices[index] >= each:
+                    result.append(prices[index]-each)
+                    break
+            else:
+                result.append(prices[index])
+        return result
+
+
+answer = Solution()
+print(answer.finalPrices([10, 10, 1, 1, 0]))
