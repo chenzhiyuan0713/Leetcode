@@ -32,4 +32,9 @@ n 不含任何前导零并总是表示正整数
 
 class Solution:
     def minPartitions(self, n: str) -> int:
+        return int(max(i for i in n))
+
+
+answer = Solution()
+print(answer.minPartitions("32"))
 
