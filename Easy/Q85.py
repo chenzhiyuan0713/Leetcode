@@ -37,4 +37,12 @@ coordinates.length == 2
 
 class Solution:
     def squareIsWhite(self, coordinates: str) -> bool:
+        char_1, char2 = ord(coordinates[0])-96, int(coordinates[1])
+        if char_1 % 2 != char2 % 2:
+            return True
+        else:
+            return False
 
+
+answer = Solution()
+print(answer.squareIsWhite('b2'))
