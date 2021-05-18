@@ -36,7 +36,232 @@ grid[i][j] 为 0 或 1
 from typing import List
 
 
+class Solution2:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        length = len(grid)-1
+        counter = 0
+        if length == 1:
+            if grid[0][0] == 1:
+                return 4
+            else:
+                return 0
+        for i in range(length):
+            if i == 0:
+                for j in range(length):
+                    if j == 0:
+                        if grid[i][j] == 1:
+                            counter += 1
+                        if grid[i + 1][j] == 0 and grid[i][j] == 1:
+                            counter += 1
+                        if grid[i][j + 1] == 0 and grid[i][j] == 1:
+                            counter += 1
+                        continue
+                    if j == length:
+                        if grid[i][j] == 1:
+                            counter += 1
+                        if grid[i - 1][j] == 0 and grid[i][j] == 1:
+                            counter += 1
+                        if grid[i][j - 1] == 0 and grid[i][j] == 1:
+                            counter += 1
+                        continue
+
+                    if grid[i][j] == 1:
+                        counter += 1
+                    if grid[i - 1][j] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    if grid[i][j - 1] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    if grid[i][j + 1] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    continue
+
+            if i == length:
+                for j in range(length):
+                    if j == 0:
+                        if grid[i][j] == 1:
+                            counter += 1
+                        if grid[i - 1][j] == 0 and grid[i][j] == 1:
+                            counter += 1
+                        if grid[i][j + 1] == 0 and grid[i][j] == 1:
+                            counter += 1
+                        continue
+                    if j == length:
+                        if grid[i][j] == 1:
+                            counter += 1
+                        if grid[i - 1][j] == 0 and grid[i][j] == 1:
+                            counter += 1
+                        if grid[i][j - 1] == 0 and grid[i][j] == 1:
+                            counter += 1
+                        continue
+
+                    if grid[i][j] == 1:
+                        counter += 1
+                    if grid[i - 1][j] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    if grid[i][j - 1] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    if grid[i][j + 1] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    continue
+
+            for j in range(length):
+                if j == 0:
+                    if grid[i][j] == 1:
+                        counter += 1
+                    if grid[i - 1][j] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    if grid[i + 1][j] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    if grid[i][j + 1] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    continue
+                if j == length:
+                    if grid[i][j] == 1:
+                        counter += 1
+                    if grid[i - 1][j] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    if grid[i + 1][j] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    if grid[i][j - 1] == 0 and grid[i][j] == 1:
+                        counter += 1
+                    continue
+
+                if grid[i-1][j] == 0 and grid[i][j] == 1:
+                    counter += 1
+                if grid[i+1][j] == 0 and grid[i][j] == 1:
+                    counter += 1
+                if grid[i][j-1] == 0 and grid[i][j] == 1:
+                    counter += 1
+                if grid[i][j+1] == 0 and grid[i][j] == 1:
+                    counter += 1
+
+        return counter
+
+
 class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         length = len(grid)
+        length_y = len(grid[0])
         counter = 0
+        # if length == 1:
+        #     if grid[0][0] == 1:
+        #         return 4
+        #     else:
+        #         return 0
+        for i in range(length):
+            for j in range(length_y):
+                if grid[i][j] == 1:
+                    counter += 4
+        for i in range(length):
+            if i == 0:
+                for j in range(length):
+                    if j == 0:
+                        if grid[i + 1][j] == 1 and grid[i][j] == 1:
+                            counter -= 1
+                        if grid[i][j + 1] == 1 and grid[i][j] == 1:
+                            counter -= 1
+                        continue
+                    if j == length - 1:
+                        if grid[i + 1][j] == 1 and grid[i][j] == 1:
+                            counter -= 1
+                        if grid[i][j - 1] == 1 and grid[i][j] == 1:
+                            counter -= 1
+                        continue
+
+                    if grid[i + 1][j] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    if grid[i][j - 1] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    if grid[i][j + 1] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                continue
+
+            if i == length-1:
+                for j in range(length):
+                    if j == 0:
+                        if grid[i - 1][j] == 1 and grid[i][j] == 1:
+                            counter -= 1
+                        if grid[i][j + 1] == 1 and grid[i][j] == 1:
+                            counter -= 1
+                        continue
+                    if j == length - 1:
+                        if grid[i - 1][j] == 1 and grid[i][j] == 1:
+                            counter -= 1
+                        if grid[i][j - 1] == 1 and grid[i][j] == 1:
+                            counter -= 1
+                        continue
+
+                    if grid[i - 1][j] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    if grid[i][j - 1] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    if grid[i][j + 1] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                continue
+
+            for j in range(length):
+                if j == 0:
+                    if grid[i - 1][j] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    if grid[i + 1][j] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    if grid[i][j + 1] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    continue
+                if j == length-1:
+                    if grid[i - 1][j] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    if grid[i + 1][j] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    if grid[i][j - 1] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                    continue
+
+                if grid[i - 1][j] == 1 and grid[i][j] == 1:
+                    counter -= 1
+                if grid[i + 1][j] == 1 and grid[i][j] == 1:
+                    counter -= 1
+                if grid[i][j - 1] == 1 and grid[i][j] == 1:
+                    counter -= 1
+                if grid[i][j + 1] == 1 and grid[i][j] == 1:
+                    counter -= 1
+        return counter
+
+
+class Solution3:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        length_x = len(grid)
+        length_y = len(grid[0])
+        counter = 0
+        for i in range(length_x):
+            for j in range(length_y):
+                if grid[i][j] == 1:
+                    counter += 4
+        for i in range(length_x):
+            for j in range(length_y):
+                try:
+                    if grid[i - 1][j] == 1 and grid[i][j] == 1 and i-1 >= 0:
+                        counter -= 1
+                except:
+                    pass
+                try:
+                    if grid[i + 1][j] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                except:
+                    pass
+                try:
+                    if grid[i][j - 1] == 1 and grid[i][j] == 1 and j-1 >= 0:
+                        counter -= 1
+                except:
+                    pass
+                try:
+                    if grid[i][j + 1] == 1 and grid[i][j] == 1:
+                        counter -= 1
+                except:
+                    pass
+
+        return counter
+
+
+answer = Solution3()
+print(answer.islandPerimeter([[1,0]]))
